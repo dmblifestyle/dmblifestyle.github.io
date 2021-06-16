@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
       /*------------------
     Preloader
 --------------------*/
-      $(window).on('load', function () {
+
         $(".loader").fadeOut();
         $("#preloder").delay(20).fadeOut("slow");
 
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
       $('.collapse').on('hidden.bs.collapse', function () {
         $(this).prev().removeClass('active');
       });
-    },50);
+
 
   }
 
