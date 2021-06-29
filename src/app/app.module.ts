@@ -12,6 +12,7 @@ import { FooterComponent } from './landingpages/footer/footer.component';
 import { HeaderComponent } from './landingpages/header/header.component';
 import { PricingComponent } from './landingpages/pricing/pricing.component';
 import { ServicesComponent } from './landingpages/services/services.component';
+import { ServiceDetailComponent } from './service-detail/service-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ServicesComponent } from './landingpages/services/services.component';
     FooterComponent,
     HeaderComponent,
     PricingComponent,
-    ServicesComponent
+    ServicesComponent,
+    ServiceDetailComponent
   ],
   imports: [
     BrowserModule,
