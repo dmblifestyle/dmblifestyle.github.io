@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -8,67 +14,30 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public configUrl = 'http://www.dmb.somee.com/api/dmb/';
+  public IsApiConnected:any;
+  public model:any = {};
+
+  submitted = false;
+
+  onSubmit() { this.submitted = true; }
+
+  constructor(private http: HttpClient) {
+     this.http.get(this.configUrl+'test').subscribe((data)=>{
+          debugger;
+          this.IsApiConnected = data;
+     });
+   }
 
   ngOnInit(): void {
 
-    setTimeout(() => {
+  }
 
-      /*------------------
-      Navigation
-    --------------------*/
-      // $(".header__menu").slicknav({
-      //   prependTo: '#mobile-menu-wrap',
-      //   allowParentLinks: true,
-      //   'closedSymbol': '<i class="fa fa-angle-right"></i>', // Character after collapsed parents.
-      //   'openedSymbol': '<i class="fa fa-angle-up"></i>', // Character after expanded parents.
-      // });
-
-      /*--------------------------
-          Testimonial Slider
-      ----------------------------*/
-      // $(".testimonial__slider").owlCarousel({
-      //   loop: true,
-      //   margin: 0,
-      //   items: 2,
-      //   dots: true,
-      //   smartSpeed: 1200,
-      //   autoHeight: false,
-      //   autoplay: true,
-      //   responsive: {
-      //     768: {
-      //       items: 2,
-      //     },
-      //     0: {
-      //       items: 1,
-      //     }
-      //   }
-      // });
-
-      /*------------------
-      Magnific
-    --------------------*/
-      // $('.video-popup').magnificPopup({
-      //   type: 'iframe'
-      // });
-
-      // $('.image-popup').magnificPopup({
-      //   type: 'image'
-      // });
-
-      /*-------------------
-      Nice Select
-    --------------------- */
-      // $("select").niceSelect();
-
-      /*-------------------
-      Datepicker
-    --------------------- */
-      // $(".datepicker").datepicker({
-      //   minDate: 0
-      // });
-    }, 500);
-
+  newAppoitment(){
+    this.http.post(this.configUrl+'booking', this.model).subscribe(res=>{
+      alert("Request Send Succssfully !");
+      console.log(res);
+    })
   }
 
 }
