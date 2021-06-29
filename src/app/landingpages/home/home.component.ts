@@ -14,7 +14,7 @@ import * as $ from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
-  public configUrl = 'http://www.dmb.somee.com/api/dmb/';
+  public configUrl = 'https://www.dmb.somee.com/api/dmb/';
   public IsApiConnected:any;
   public model:any = {};
 
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) {
      this.http.get(this.configUrl+'test').subscribe((data)=>{
           debugger;
-          this.IsApiConnected = data;
+          this.IsApiConnected = data['data'];
      });
    }
 
